@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/gile.css">
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
@@ -81,8 +82,10 @@
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
+		  <script src="javascripts/jquery.1.11.0.min.js"></script>
+		  <script src="javascripts/gumi.min.js"></script>
           <script type="text/javascript">
-			
+			$('.js-gile-example').gumi();
 
             try {
               var pageTracker = _gat._getTracker("UA-51905853-1");
