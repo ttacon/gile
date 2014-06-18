@@ -5,12 +5,25 @@
  */
 
 ;(function($, window, document, undefined) {
+  var defaults = {
+    defaultButtonLabel: 'Choose file',
+    buttonClass: 'gile-btn-default',
+    buttonSelectedClass: 'gile-btn-selected',
+    onChange: function() {},
+    onClick: function() {},
+    onCancel: function() {
+      this.reset();
+    }
+  };
+
   /**
    * @constructor
    */
   var Gile = function(elem, options) {
     this.elem = elem;
     this.$elem = $(elem);
+
+    this.options = $.extend({}, defaults, options);
 
     this._init();
   };
@@ -36,13 +49,15 @@
       this.$parent = $('<div/>');
       this.$parent.addClass('gile-parent');
       this.$label = $('<span/>');
-      this.$label.addClass('gile-label');
+      this.$label.addClass('gile-btn-default');
 
       this.fileInput = this.$elem.wrap(this.$parent);
       this.$parent = this.$elem.parent();
       this.$parent.before(this.$label);
-      this.$label = this.$parent.siblings().filter('.gile-label');
-      this.$label.text(this.$elem.val());      
+      this.$label = this.$parent.siblings().filter('.' + this.options.buttonClass);
+      this.$label.text(this.$elem.val());
+
+      this.lastFileName = this.options.defaultButtonLabel;
     },
 
 
@@ -57,10 +72,40 @@
 
       // When the file input changes, remove the 'fakepath' modern browsers prepend.
       this.fileInput.change(function() {
-        $(this).parent().prev().text(this.value.replace('C:\\fakepath\\', ''));
+        $(this).data('gile').updateVal(this.value);
       });
 
-      this.$label.text('Choose file');
+      this.$label.text(this.options.defaultButtonLabel);
+    },
+
+    /**
+     * Do the click action!
+     */
+    doClick: function() {
+      this.onClick();
+    },
+
+    /**
+     * Updates the value gile knows of.
+     */
+    updateVal: function(fileName) {
+      if (!fileName) {
+        this.options.onCancel.call(this);
+        return;
+      }
+
+      this.$label.text(fileName.replace('C:\\fakepath\\', ''))
+        .removeClass('gile-btn-default')
+        .addClass('gile-btn-selected');
+      this.lastFileName = this.$label.text();
+      this.options.onChange(fileName);
+    },
+
+    /**
+     * Reset the value on the label/button.
+     */
+    reset: function() {
+          this.$label.text(this.lastFileName);
     }
   };
 

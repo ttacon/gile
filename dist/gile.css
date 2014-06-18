@@ -4,7 +4,8 @@
 	overflow: hidden;
 }
 
-.gile-label {
+.gile-btn-selected,
+.gile-btn-default {
 	cursor: pointer;
 	display: none;
 	padding: 8px 15px;
