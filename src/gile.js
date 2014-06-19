@@ -106,6 +106,15 @@
      */
     reset: function() {
       this.$label.text(this.lastFileName);
+    },
+
+    /**
+     * Retreive the value of the file input. If a user hit cancel on the
+     * choose file dialogue, the input's value will be "" but this function
+     * will return the last chosen file, if any.
+     */
+    val: function() {
+      return this.lastFileName;
     }
   };
 
