@@ -58,6 +58,7 @@
       this.$label.text(this.$elem.val());
 
       this.lastFileName = this.options.defaultButtonLabel;
+      this.lastFile = {};
     },
 
 
@@ -72,7 +73,7 @@
 
       // When the file input changes, remove the 'fakepath' modern browsers prepend.
       this.fileInput.change(function() {
-        $(this).data('gile').updateVal(this.value);
+        $(this).data('gile').updateVal(this);
       });
 
       this.$label.text(this.options.defaultButtonLabel);
@@ -88,7 +89,8 @@
     /**
      * Updates the value gile knows of.
      */
-    updateVal: function(fileName) {
+    updateVal: function(fileInput) {
+      var fileName = fileInput.value;
       if (!fileName) {
         this.options.onCancel.call(this);
         return;
@@ -98,7 +100,8 @@
         .removeClass('gile-btn-default')
         .addClass('gile-btn-selected');
       this.lastFileName = this.$label.text();
-      this.options.onChange(fileName);
+      this.lastFile = fileInput.files[0];
+      this.options.onChange(fileName, this.lastFile);
     },
 
     /**
@@ -115,6 +118,13 @@
      */
     val: function() {
       return this.lastFileName;
+	},
+
+    /**
+     * Retrieves the last selected file object.
+     */
+    file: function() {
+      return this.lastFile;
     }
   };
 
