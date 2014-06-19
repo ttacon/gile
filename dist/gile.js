@@ -49,7 +49,7 @@
       this.$parent = $('<div/>');
       this.$parent.addClass('gile-parent');
       this.$label = $('<span/>');
-      this.$label.addClass('gile-btn-default');
+      this.$label.addClass(this.options.buttonClass);
 
       this.fileInput = this.$elem.wrap(this.$parent);
       this.$parent = this.$elem.parent();
@@ -97,8 +97,8 @@
       }
 
       this.$label.text(fileName.replace('C:\\fakepath\\', ''))
-        .removeClass('gile-btn-default')
-        .addClass('gile-btn-selected');
+        .removeClass(this.options.buttonClass)
+        .addClass(this.options.buttonSelectedClass);
       this.lastFileName = this.$label.text();
       this.lastFile = fileInput.files[0];
       this.options.onChange(fileName, this.lastFile);
