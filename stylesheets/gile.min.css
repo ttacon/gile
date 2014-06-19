@@ -1,1 +1,1 @@
-.gile-parent{width:0;height:0;overflow:hidden}.gile-btn-default,.gile-btn-selected{cursor:pointer;display:none;padding:8px 15px;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border-bottom:3px #2665c3 solid;background:#75b9ef;color:#225aba}
+.gile-parent{width:0;height:0;overflow:hidden}.gile-btn-default,.gile-btn-selected{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;display:none;padding:8px 15px;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border-bottom:3px #2665c3 solid;background:#75b9ef;color:#225aba}
