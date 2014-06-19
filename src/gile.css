@@ -6,6 +6,9 @@
 
 .gile-btn-selected,
 .gile-btn-default {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	cursor: pointer;
 	display: none;
 	padding: 8px 15px;
