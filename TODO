@@ -1,5 +1,1 @@
--minified
--grunt
--distributions
--refactor
--register defaults
+-gilify() - add hidden file input behind styled element
